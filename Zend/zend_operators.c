@@ -2048,6 +2048,16 @@ ZEND_API void zend_locale_sprintf_double(zval *op ZEND_FILE_LINE_DC) /* {{{ */
 }
 /* }}} */
 
+ZEND_API zval zend_object_box(zval obj TSRMLS_DC) /* {{{ */
+{
+	//if (obj.type == IS_OBJECT) {
+		return obj;
+	//} else {
+		//_zval_box box = (_zval_box *)malloc(sizeof(_zval_box));
+	//}
+}
+/* }}} */
+
 /*
  * Local variables:
  * tab-width: 4

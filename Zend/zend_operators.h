@@ -392,7 +392,8 @@ END_EXTERN_C()
 #define Z_STRVAL(zval)			(zval).value.str.val
 #define Z_STRLEN(zval)			(zval).value.str.len
 #define Z_ARRVAL(zval)			(zval).value.ht
-#define Z_OBJVAL(zval)			(zval).value.obj
+/* #define Z_OBJVAL(zval)			(zval).value.obj */
+#define Z_OBJVAL(zval)			Z_BOXVAL(zval).value.obj
 #define Z_OBJ_HANDLE(zval)		Z_OBJVAL(zval).handle
 #define Z_OBJ_HT(zval)			Z_OBJVAL(zval).handlers
 #define Z_OBJCE(zval)			zend_get_class_entry(&(zval) TSRMLS_CC)
@@ -434,6 +435,8 @@ END_EXTERN_C()
 #define Z_TYPE(zval)		(zval).type
 #define Z_TYPE_P(zval_p)	Z_TYPE(*zval_p)
 #define Z_TYPE_PP(zval_pp)	Z_TYPE(**zval_pp)
+
+#define Z_BOXVAL(zval) 
 
 #if HAVE_SETLOCALE && defined(ZEND_WIN32) && !defined(ZTS) && defined(_MSC_VER) && (_MSC_VER >= 1400)
 /* This is performance improvement of tolower() on Windows and VC2005

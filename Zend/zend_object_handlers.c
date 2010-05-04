@@ -1103,6 +1103,11 @@ static int zend_std_compare_objects(zval *o1, zval *o2 TSRMLS_DC) /* {{{ */
 	if (zobj1->ce != zobj2->ce) {
 		return 1; /* different classes */
 	}
+
+	//if (zobj1->ce->handlers->__compare) {
+		//zobj1-ce->handler->__compare(zobj2);
+	//}
+
 	return zend_compare_symbol_tables_i(zobj1->properties, zobj2->properties TSRMLS_CC);
 }
 /* }}} */
