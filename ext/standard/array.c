@@ -4507,6 +4507,51 @@ PHP_FUNCTION(array_combine)
 }
 /* }}} */
 
+
+
+/* {{{ proto bool is_assoc(array arr)
+   Creates an array by using the elements of the first parameter as keys and the elements of the second as the corresponding values */
+PHP_FUNCTION(is_assoc)
+{
+	zval *arr;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "a", &arr) == FAILURE) {
+		return;
+	}
+
+	int i;
+	HashTable *myht = Z_ARRVAL_P(arr);
+
+	i = myht ? zend_hash_num_elements(myht) : 0;
+	if (i > 0) {
+		char *key;
+		ulong index, idx;
+		uint key_len;
+		HashPosition pos;
+
+		zend_hash_internal_pointer_reset_ex(myht, &pos);
+		idx = 0;
+		for (;; zend_hash_move_forward_ex(myht, &pos)) {
+			i = zend_hash_get_current_key_ex(myht, &key, &key_len, &index, 0, &pos);
+			if (i == HASH_KEY_NON_EXISTANT)
+				break;
+
+			if (i == HASH_KEY_IS_STRING) {
+				RETURN_TRUE;
+			} else {
+				if (index != idx) {
+					RETURN_TRUE;
+				}
+			}
+			idx++;
+		}
+	}
+
+	RETURN_FALSE;
+}
+/* }}} */
+
+
 /*
  * Local variables:
  * tab-width: 4

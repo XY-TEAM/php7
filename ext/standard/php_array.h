@@ -101,6 +101,7 @@ PHP_FUNCTION(array_map);
 PHP_FUNCTION(array_key_exists);
 PHP_FUNCTION(array_chunk);
 PHP_FUNCTION(array_combine);
+PHP_FUNCTION(is_assoc);
 
 PHPAPI HashTable* php_splice(HashTable *, int, int, zval ***, int, HashTable **);
 PHPAPI int php_array_merge(HashTable *dest, HashTable *src, int recursive TSRMLS_DC);
