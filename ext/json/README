@@ -1,4 +1,4 @@
-json 1.2.0
+json 2.0.0
 ==========
 
 This extension implements the JavaScript Object Notation (JSON)
@@ -7,16 +7,21 @@ data-interchange format as specified in [0].
 Two functions are implemented: encoding and decoding. The decoding
 is handled by a parser based on JSON_checker[1] by Douglas Crockford.
 
+Static class JSON created, with methods stringify() and parse(),
+to mirror the nomenclature of the JSON class exposed by modern browsers.
+
 
 Function overview
 -----------------
 
     string json_encode ( mixed value )
+    string JSON::stringify ( mixed value )
 
 json_encode returns a string containing the JSON representation of value.
 value can be any type except a resource.
 
     mixed json_decode ( string json, [bool assoc] )
+    mixed JSON::parse ( string json, [bool assoc] )
 
 json_decode takes a JSON string and converts it into a PHP variable.
 When assoc is given, and evaluates to TRUE, json_decode() will return
@@ -28,11 +33,15 @@ Example usage
 
 $arr = array("a"=>1,"b"=>2,"c"=>3,"d"=>4,"e"=>5);
 echo json_encode($arr);
+// or
+echo JSON::stringify($arr);
 
 ---> {"a":1,"b":2,"c":3,"d":4,"e":5}
 
 $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
 var_dump(json_decode($json));
+// or
+var_dump(JSON::parse($json));
 
 ---> object(stdClass)#1 (5) {
         ["a"]=>
@@ -49,6 +58,8 @@ var_dump(json_decode($json));
 
 $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
 var_dump(json_decode($json, true));
+// or
+var_dump(JSON::parse($json, true));
 
 ---> array(5) {
         ["a"]=>
@@ -68,6 +79,7 @@ Authors
 -------
 
 Omar Kilani <omar@php.net>
+Ryan W Tenney <ryan@10e.us>
 
 
 ---
