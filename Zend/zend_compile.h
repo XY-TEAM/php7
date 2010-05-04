@@ -156,6 +156,8 @@ typedef struct _zend_try_catch_element {
 /* function flag for internal user call handlers __call, __callstatic */
 #define ZEND_ACC_CALL_VIA_HANDLER     0x200000
 
+#define ZEND_ACC_READONLY     0x400000
+
 char *zend_visibility_string(zend_uint fn_flags);
 
 

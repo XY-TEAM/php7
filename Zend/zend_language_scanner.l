@@ -1042,7 +1042,7 @@ NEWLINE ("\r"|"\n"|"\r\n")
 	return T_VAR;
 }
 
-<ST_IN_SCRIPTING>"("{TABS_AND_SPACES}("int"|"integer"){TABS_AND_SPACES}")" {
+<ST_IN_SCRIPTING>"("{TABS_AND_SPACES}("int"|"integer"|"long"){TABS_AND_SPACES}")" {
 	return T_INT_CAST;
 }
 
@@ -1070,7 +1070,7 @@ NEWLINE ("\r"|"\n"|"\r\n")
 	return T_BOOL_CAST;
 }
 
-<ST_IN_SCRIPTING>"("{TABS_AND_SPACES}("unset"){TABS_AND_SPACES}")" {
+<ST_IN_SCRIPTING>"("{TABS_AND_SPACES}("unset"|"undefined"){TABS_AND_SPACES}")" {
 	return T_UNSET_CAST;
 }
 
@@ -1142,7 +1142,31 @@ NEWLINE ("\r"|"\n"|"\r\n")
 	return T_PUBLIC;
 }
 
-<ST_IN_SCRIPTING>"unset" {
+<ST_IN_SCRIPTING>"readonly" {
+	return T_READONLY;
+}
+
+<ST_IN_SCRIPTING>("int"|"integer") {
+	return T_INT_T;
+}
+
+<ST_IN_SCRIPTING>("real"|"double"|"float") {
+	return T_DOUBLE_T;
+}
+
+<ST_IN_SCRIPTING>("string"|"binary") {
+	return T_STRING_T;
+}
+
+<ST_IN_SCRIPTING>"object" {
+	return T_OBJECT_T;
+}
+
+<ST_IN_SCRIPTING>("bool"|"boolean") {
+	return T_BOOL_T;
+}
+
+<ST_IN_SCRIPTING>("unset"|"undefined") {
 	return T_UNSET;
 }
 
