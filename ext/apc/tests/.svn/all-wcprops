@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repository/!svn/ver/288844/pecl/apc/trunk/tests
+END
+apc_bin_002-1.inc
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274613/pecl/apc/trunk/tests/apc_bin_002-1.inc
+END
+apc_bin_002-2.inc
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274613/pecl/apc/trunk/tests/apc_bin_002-2.inc
+END
+iterator_001.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274518/pecl/apc/trunk/tests/iterator_001.phpt
+END
+iterator_002.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274518/pecl/apc/trunk/tests/iterator_002.phpt
+END
+apc_bin_001.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/!svn/ver/274613/pecl/apc/trunk/tests/apc_bin_001.phpt
+END
+iterator_003.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274518/pecl/apc/trunk/tests/iterator_003.phpt
+END
+apc_bin_002.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repository/!svn/ver/286985/pecl/apc/trunk/tests/apc_bin_002.phpt
+END
+iterator_004.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274518/pecl/apc/trunk/tests/iterator_004.phpt
+END
+iterator_005.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/274518/pecl/apc/trunk/tests/iterator_005.phpt
+END
+iterator_006.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/288844/pecl/apc/trunk/tests/iterator_006.phpt
+END
+iterator_007.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/264968/pecl/apc/trunk/tests/iterator_007.phpt
+END
+apc_010.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/274612/pecl/apc/trunk/tests/apc_010.phpt
+END
+apc_001.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/209508/pecl/apc/trunk/tests/apc_001.phpt
+END
+skipif.inc
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repository/!svn/ver/192898/pecl/apc/trunk/tests/skipif.inc
+END
+apc_002.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/209508/pecl/apc/trunk/tests/apc_002.phpt
+END
+apc_003.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/270636/pecl/apc/trunk/tests/apc_003.phpt
+END
+apc_004.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/253506/pecl/apc/trunk/tests/apc_004.phpt
+END
+apc_005.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/262738/pecl/apc/trunk/tests/apc_005.phpt
+END
+apc_003b.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/!svn/ver/270636/pecl/apc/trunk/tests/apc_003b.phpt
+END
+apc_006.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/274610/pecl/apc/trunk/tests/apc_006.phpt
+END
+apc_007.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/284578/pecl/apc/trunk/tests/apc_007.phpt
+END
+apc_008.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/264962/pecl/apc/trunk/tests/apc_008.phpt
+END
+apc_009.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/repository/!svn/ver/275340/pecl/apc/trunk/tests/apc_009.phpt
+END
+apc53_001.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286792/pecl/apc/trunk/tests/apc53_001.phpt
+END
+php_5_3_ns.inc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286792/pecl/apc/trunk/tests/php_5_3_ns.inc
+END
+apc53_002.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286792/pecl/apc/trunk/tests/apc53_002.phpt
+END
+apc53_003.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286802/pecl/apc/trunk/tests/apc53_003.phpt
+END
+apc53_004.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286802/pecl/apc/trunk/tests/apc53_004.phpt
+END
+apc53_005.phpt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repository/!svn/ver/286802/pecl/apc/trunk/tests/apc53_005.phpt
+END

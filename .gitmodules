@@ -1,3 +1,12 @@
 [submodule "sapi/fpm"]
 	path = sapi/fpm
 	url = git://github.com/ryantenney/php-fpm-mirror.git
+[submodule "ext/xhp"]
+	path = ext/xhp
+	url = git://github.com/facebook/xhp.git
+[submodule "memcached"]
+	path = memcached
+	url = git://github.com/memcached/memcached.git
+[submodule "ext/memcached"]
+	path = ext/memcached
+	url = git://github.com/memcached/memcached.git
