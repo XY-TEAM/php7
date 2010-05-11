@@ -21,7 +21,7 @@
 #ifndef PHP_JSON_H
 #define PHP_JSON_H
 
-#define PHP_JSON_VERSION "2.0.0"
+#define PHP_JSON_VERSION "1.2.1"
 #include "ext/standard/php_smart_str.h"
 
 extern zend_module_entry json_module_entry;
@@ -49,8 +49,6 @@ ZEND_END_MODULE_GLOBALS(json)
 
 PHP_JSON_API void php_json_encode(smart_str *buf, zval *val, int options TSRMLS_DC);
 PHP_JSON_API void php_json_decode(zval *return_value, char *str, int str_len, zend_bool assoc, long depth TSRMLS_DC);
-
-PHP_JSON_API zend_class_entry *php_json_get_json_ce(void);
 
 #endif  /* PHP_JSON_H */
 

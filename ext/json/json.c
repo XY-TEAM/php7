@@ -35,33 +35,21 @@ static PHP_FUNCTION(json_encode);
 static PHP_FUNCTION(json_decode);
 static PHP_FUNCTION(json_last_error);
 
-zend_class_entry *json_ce_json;
-
 static const char digits[] = "0123456789abcdef";
 
-#define PHP_JSON_HEX_TAG		(1<<0)
-#define PHP_JSON_HEX_AMP		(1<<1)
-#define PHP_JSON_HEX_APOS		(1<<2)
-#define PHP_JSON_HEX_QUOT		(1<<3)
+#define PHP_JSON_HEX_TAG	(1<<0)
+#define PHP_JSON_HEX_AMP	(1<<1)
+#define PHP_JSON_HEX_APOS	(1<<2)
+#define PHP_JSON_HEX_QUOT	(1<<3)
 #define PHP_JSON_FORCE_OBJECT	(1<<4)
 
-#define PHP_JSON_OUTPUT_ARRAY	0
-#define PHP_JSON_OUTPUT_OBJECT	1
-
-static void json_register_classes(TSRMLS_D);
+#define PHP_JSON_OUTPUT_ARRAY 0
+#define PHP_JSON_OUTPUT_OBJECT 1
 
 ZEND_DECLARE_MODULE_GLOBALS(json)
 
 /* {{{ arginfo */
-ZEND_BEGIN_ARG_INFO_EX(arginfo_json_construct, 0, 0, 0)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(arginfo_json_encode, 0, 0, 1)
-	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, options)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_json_method_stringify, 0, 0, 1)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
@@ -72,18 +60,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_json_decode, 0, 0, 1)
 	ZEND_ARG_INFO(0, depth)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_json_method_parse, 0, 0, 1)
-	ZEND_ARG_INFO(0, json)
-	ZEND_ARG_INFO(0, assoc)
-	ZEND_ARG_INFO(0, depth)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO(arginfo_json_last_error, 0)
 ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO(arginfo_json_method_last_error, 0)
-ZEND_END_ARG_INFO()
-
 /* }}} */
 
 /* {{{ json_functions[] */
@@ -95,32 +73,20 @@ static const function_entry json_functions[] = {
 };
 /* }}} */
 
-/* {{{ json_methods[] */
-static const function_entry json_methods[] = {
-	PHP_ME_MAPPING(stringify,    json_encode,        arginfo_json_method_stringify,     ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME_MAPPING(parse,        json_decode,        arginfo_json_method_parse,         ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME_MAPPING(getLastError, json_last_error,    arginfo_json_method_last_error,    ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	/*PHP_ME_MAPPING(escapeString, json_escape_string, arginfo_json_method_escape_string, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)*/
-	{NULL, NULL, NULL}
-};
-/* }}} */
-
 /* {{{ MINIT */
 static PHP_MINIT_FUNCTION(json)
 {
-	json_register_classes(TSRMLS_C);
-
-	REGISTER_LONG_CONSTANT("JSON_HEX_TAG",      PHP_JSON_HEX_TAG,      CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_HEX_AMP",      PHP_JSON_HEX_AMP,      CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_HEX_APOS",     PHP_JSON_HEX_APOS,     CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_HEX_QUOT",     PHP_JSON_HEX_QUOT,     CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_HEX_TAG",  PHP_JSON_HEX_TAG,  CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_HEX_AMP",  PHP_JSON_HEX_AMP,  CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_HEX_APOS", PHP_JSON_HEX_APOS, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_HEX_QUOT", PHP_JSON_HEX_QUOT, CONST_CS | CONST_PERSISTENT);
 	REGISTER_LONG_CONSTANT("JSON_FORCE_OBJECT", PHP_JSON_FORCE_OBJECT, CONST_CS | CONST_PERSISTENT);
 
-	REGISTER_LONG_CONSTANT("JSON_ERROR_NONE",           PHP_JSON_ERROR_NONE,           CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_ERROR_DEPTH",          PHP_JSON_ERROR_DEPTH,          CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_ERROR_NONE", PHP_JSON_ERROR_NONE, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_ERROR_DEPTH", PHP_JSON_ERROR_DEPTH, CONST_CS | CONST_PERSISTENT);
 	REGISTER_LONG_CONSTANT("JSON_ERROR_STATE_MISMATCH", PHP_JSON_ERROR_STATE_MISMATCH, CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_ERROR_CTRL_CHAR",      PHP_JSON_ERROR_CTRL_CHAR,      CONST_CS | CONST_PERSISTENT);
-	REGISTER_LONG_CONSTANT("JSON_ERROR_SYNTAX",         PHP_JSON_ERROR_SYNTAX,         CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_ERROR_CTRL_CHAR", PHP_JSON_ERROR_CTRL_CHAR, CONST_CS | CONST_PERSISTENT);
+	REGISTER_LONG_CONSTANT("JSON_ERROR_SYNTAX", PHP_JSON_ERROR_SYNTAX, CONST_CS | CONST_PERSISTENT);
 
 	return SUCCESS;
 }
@@ -133,6 +99,7 @@ static PHP_GINIT_FUNCTION(json)
 	json_globals->error_code = 0;
 }
 /* }}} */
+
 
 /* {{{ json_module_entry
  */
@@ -165,7 +132,6 @@ static PHP_MINFO_FUNCTION(json)
 	php_info_print_table_start();
 	php_info_print_table_row(2, "json support", "enabled");
 	php_info_print_table_row(2, "json version", PHP_JSON_VERSION);
-	php_info_print_table_row(1, "JSON class enabled");
 	php_info_print_table_end();
 }
 /* }}} */
@@ -591,25 +557,6 @@ static PHP_FUNCTION(json_encode)
 }
 /* }}} */
 
-/* {{{ proto string JSON::escapeString(string str)
-   JSON escape string */
-/*static PHP_FUNCTION(json_escape_string)
-{
-	zval *str;
-	smart_str buf = {0};
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &str) == FAILURE) {
-		return;
-	}
-
-	php_json_encode(&buf, parameter, options TSRMLS_CC);
-
-	ZVAL_STRINGL(return_value, buf.c, buf.len, 1);
-
-	smart_str_free(&buf);
-}*/
-/* }}} */
-
 /* {{{ proto mixed json_decode(string json [, bool assoc [, long depth]])
    Decodes the JSON representation into a PHP value */
 static PHP_FUNCTION(json_decode)
@@ -642,20 +589,6 @@ static PHP_FUNCTION(json_last_error)
 	RETURN_LONG(JSON_G(error_code));
 }
 /* }}} */
-
-PHP_JSON_API zend_class_entry *php_json_get_json_ce(void) /* {{{ */
-{
-	return json_ce_json;
-} /* }}} */
-
-static void json_register_classes(TSRMLS_D) /* {{{ */
-{
-	zend_class_entry ce_json;
-	INIT_CLASS_ENTRY(ce_json, "JSON", json_methods);
-	json_ce_json = zend_register_internal_class_ex(&ce_json, NULL, NULL TSRMLS_CC);
-
-} /* }}} */
-
 
 /*
  * Local variables:
