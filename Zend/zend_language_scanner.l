@@ -1768,6 +1768,80 @@ inline_html:
 	return T_COMMENT;
 }
 
+
+<ST_IN_SCRIPTING>"/" {
+	/* const char *modifiers = "ADJSUXeimsux"; */
+	const unsigned char modifiers[] = {0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0};
+	register char *s, *t;
+	char *end;
+	unsigned char in_regex = 1;
+
+	/* consume regex, then modifiers */
+	while (YYCURSOR++ < YYLIMIT) {
+		if (in_regex != 0) {
+			if (*YYCURSOR == '\\') {
+				/* boo! */
+			} else {
+				if (*(YYCURSOR+1) == '/') {
+					YYCURSOR++;
+					in_regex = 0;
+				}
+			}
+		} else {
+			if (*YYCURSOR & 64 != 0 && *YYCURSOR & ~127 == 0) {
+				if (modifiers[*YYCURSOR ^ ~64] == 0) {
+					/* not a valid modifier, consider this the end  */
+					break;
+				}
+			}
+		}
+	}
+
+	if (YYCURSOR == YYLIMIT) {
+		zend_error(E_COMPILE_WARNING, "Unterminated RegEx literal starting line %d", CG(zend_lineno));
+	}
+
+	yyleng = YYCURSOR - SCNG(yy_text);
+	HANDLE_NEWLINES(yytext, yyleng);
+	ZVAL_STRINGL(zendlval, yytext, yyleng, 1);
+
+	s = t = zendlval->value.str.val;
+	end = s + zendlval->value.str.len;
+
+	while (s < end) {
+		if (*s == '\\') {
+			s++;
+
+			switch (*s) {
+				case '\\':
+				case '/':
+					*t++ = *s;
+					zendlval->value.str.len--;
+					break;
+				default:
+					*t++ = '\\';
+					*t++ = *s;
+					break;
+			}
+		} else {
+			*t++ = *s;
+		}
+
+		s++;
+	}
+	*t = 0;
+
+	return T_STRING;
+
+	/*
+	yy_push_state(ST_REGEX);
+	zendlval->value.str.val = yytext;
+	zendlval->value.str.len = yyleng;
+	zendlval->type = IS_REGEX;
+	return T_REGEX;*/
+}
+
+
 <ST_IN_SCRIPTING>("?>"|"</script"{WHITESPACE}*">"){NEWLINE}? {
 	zendlval->value.str.val = yytext; /* no copying - intentional */
 	zendlval->value.str.len = yyleng;
