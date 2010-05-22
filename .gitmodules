@@ -10,3 +10,6 @@
 [submodule "ext/oauth"]
 	path = ext/oauth
 	url = git://github.com/ryantenney/php-oauth.git
+[submodule "ext/uuid"]
+	path = ext/uuid
+	url = git://github.com/ryantenney/php-uuid.git
