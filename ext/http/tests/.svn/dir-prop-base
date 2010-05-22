@@ -1,0 +1,17 @@
+K 10
+svn:ignore
+V 91
+phpt.*
+*.mem
+*.diff
+*.log
+*.exp
+*.out
+*.php
+*.db
+*.tmp
+*.gcda
+*.gcno
+HttpRequestPool_cache
+
+END

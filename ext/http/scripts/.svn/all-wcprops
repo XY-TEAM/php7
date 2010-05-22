@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/scripts
+END
+gen_curlinfo.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/scripts/gen_curlinfo.php
+END
+check_docs.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/scripts/check_docs.php
+END
+bench_select_vs_event.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/scripts/bench_select_vs_event.php
+END

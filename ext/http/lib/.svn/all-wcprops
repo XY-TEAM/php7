@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib
+END
+XmlRpcServer.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib/XmlRpcServer.php
+END
+PgLobStream.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib/PgLobStream.php
+END
+BigGet.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib/BigGet.php
+END
+XmlRpcClient.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib/XmlRpcClient.php
+END
+FeedAggregator.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repository/!svn/ver/292755/pecl/http/tags/RELEASE_1_7_0b2/lib/FeedAggregator.php
+END
