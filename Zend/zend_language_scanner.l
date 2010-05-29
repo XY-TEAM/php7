@@ -1769,7 +1769,65 @@ inline_html:
 }
 
 
-<ST_IN_SCRIPTING>"/" {
+<ST_IN_SCRIPTING>"/"[^ {
+
+  unsigned char in_character_class = 0;
+
+  unsigned int *YYCURSOR_old = YYCURSOR;
+  next_.location.end_pos = YYCURSOR;
+
+  // Scan regular expression body: According to ECMA-262, 3rd, 7.8.5,
+  // the scanner should pass uninterpreted bodies to the RegExp
+  // constructor.
+  StartLiteral();
+  if (seen_equal)
+    AddChar('=');
+
+  while (c0_ != '/' || in_character_class) {
+    if (kIsLineTerminator.get(c0_) || c0_ < 0)
+      return 0;
+    if (c0_ == '\\') {  // escaped character
+      AddCharAdvance();
+      if (kIsLineTerminator.get(c0_) || c0_ < 0)
+        return 0;
+      AddCharAdvance();
+    } else {  // unescaped character
+      if (c0_ == '[')
+        in_character_class = 1;
+      if (c0_ == ']')
+        in_character_class = 0;
+      AddCharAdvance();
+    }
+  }
+  Advance();  // consume '/'
+
+  TerminateLiteral();
+
+  return 1;
+}
+
+bool Scanner::ScanRegExpFlags() {
+  // Scan regular expression flags.
+  StartLiteral();
+  while (kIsIdentifierPart.get(c0_)) {
+    if (c0_ == '\\') {
+      uc32 c = ScanIdentifierUnicodeEscape();
+      if (c != static_cast<uc32>(unibrow::Utf8::kBadChar)) {
+        // We allow any escaped character, unlike the restriction on
+        // IdentifierPart when it is used to build an IdentifierName.
+        AddChar(c);
+        continue;
+      }
+    }
+    AddCharAdvance();
+  }
+  TerminateLiteral();
+
+  next_.location.end_pos = source_pos() - 1;
+  return 1;
+}
+
+
 	/* const char *modifiers = "ADJSUXeimsux"; */
 	const unsigned char modifiers[] = {0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0};
 	register char *s, *t;

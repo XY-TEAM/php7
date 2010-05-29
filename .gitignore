@@ -76,3 +76,4 @@ tmp-php.ini
 diff
 ext/apc/.svn
 ext/http/.svn
+*.o
